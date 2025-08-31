@@ -1,0 +1,41 @@
+app:
+  name: contracts-ai
+  version: 0.1.0
+  env: dev
+commands:
+  setup: make setup
+  run_api: make run-api
+  run_ui: make run-ui
+  lint: make lint
+  test: make test
+  e2e: make e2e
+  release: make release
+architecture:
+  style: Modular Monolith
+  paths:
+    backend: backend/app
+    frontend: frontend
+    tests: backend/tests
+    docs: docs
+    data: data
+    legacy: legacy
+  components:
+    api_v1: backend/app/api/v1
+    application: backend/app/application
+    domain: backend/app/domain
+    infrastructure: backend/app/infrastructure
+    schemas: backend/app/schemas
+    core: backend/app/core
+policies:
+  logging_schema:
+  - ts
+  - level
+  - message
+  - logger
+  - component
+  - version
+  - request_id
+  - correlation_id
+  - user_id
+  - span_id
+  versioning: SemVer
