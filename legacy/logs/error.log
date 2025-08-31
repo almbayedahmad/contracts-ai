@@ -1,0 +1,106 @@
+2025-08-31 17:59:52,266 [INFO] contracts-ai.ui: RUN START id=20250831_175952
+2025-08-31 17:59:52,367 [INFO] contracts-ai.ui: RUN START id=20250831_175952
+2025-08-31 17:59:52,388 [INFO] contracts-ai.ui: RUN START id=20250831_175952
+2025-08-31 17:59:52,410 [INFO] contracts-ai.ui: RUN START id=20250831_175952
+2025-08-31 18:14:29,482 [INFO] contracts-ai.ui: RUN START id=20250831_181429
+2025-08-31 18:14:29,585 [INFO] contracts-ai.ui: RUN START id=20250831_181429
+2025-08-31 18:14:29,603 [INFO] contracts-ai.ui: RUN START id=20250831_181429
+2025-08-31 18:14:29,624 [INFO] contracts-ai.ui: RUN START id=20250831_181429
+2025-08-31 18:19:36,744 [INFO] contracts-ai.ui: RUN START id=20250831_181936
+2025-08-31 18:22:19,870 [INFO] contracts-ai.ui: RUN START id=20250831_182219
+2025-08-31 18:25:16,690 [INFO] contracts-ai.ui: RUN START id=20250831_182516
+2025-08-31 18:31:42,473 [INFO] contracts-ai.ui: RUN START id=20250831_183142
+2025-08-31 18:40:38,394 [INFO] contracts-ai.ui: RUN START id=20250831_184038
+2025-08-31 18:41:40,275 [INFO] contracts-ai.ui: RUN START id=20250831_184140
+2025-08-31 18:48:45,739 [INFO] contracts-ai.ui: RUN START id=20250831_184845
+2025-08-31 18:48:45,739 [INFO] contracts-ai.ui: RUN START id=20250831_184845
+2025-08-31 18:48:50,966 [INFO] contracts-ai.ui: RUN START id=20250831_184850
+2025-08-31 18:48:50,966 [INFO] contracts-ai.ui: RUN START id=20250831_184850
+2025-08-31 18:48:50,967 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 18:48:50,967 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 18:50:54,580 [INFO] contracts-ai.ui: RUN START id=20250831_185054
+2025-08-31 18:50:54,580 [INFO] contracts-ai.ui: RUN START id=20250831_185054
+2025-08-31 18:51:24,681 [INFO] contracts-ai.ui: RUN START id=20250831_185124
+2025-08-31 18:51:24,681 [INFO] contracts-ai.ui: RUN START id=20250831_185124
+2025-08-31 18:51:24,684 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 18:51:24,684 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 18:53:59,680 [INFO] contracts-ai.ui: RUN START id=20250831_185359
+2025-08-31 18:53:59,680 [INFO] contracts-ai.ui: RUN START id=20250831_185359
+2025-08-31 18:54:03,824 [INFO] contracts-ai.ui: RUN START id=20250831_185403
+2025-08-31 18:54:03,824 [INFO] contracts-ai.ui: RUN START id=20250831_185403
+2025-08-31 18:54:03,826 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 18:54:03,826 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 18:55:48,134 [INFO] contracts-ai.ui: RUN START id=20250831_185548
+2025-08-31 18:55:48,134 [INFO] contracts-ai.ui: RUN START id=20250831_185548
+2025-08-31 18:55:53,348 [INFO] contracts-ai.ui: RUN START id=20250831_185553
+2025-08-31 18:55:53,348 [INFO] contracts-ai.ui: RUN START id=20250831_185553
+2025-08-31 18:55:53,349 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 18:55:53,349 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 19:07:18,634 [INFO] contracts-ai.ui: RUN START id=20250831_190718
+2025-08-31 19:07:18,634 [INFO] contracts-ai.ui: RUN START id=20250831_190718
+2025-08-31 19:07:22,509 [INFO] contracts-ai.ui: RUN START id=20250831_190722
+2025-08-31 19:07:22,509 [INFO] contracts-ai.ui: RUN START id=20250831_190722
+2025-08-31 19:07:22,510 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 19:07:22,510 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined
+2025-08-31 19:21:50,024 [INFO] contracts-ai.ui: RUN START id=20250831_192150
+2025-08-31 19:21:50,024 [INFO] contracts-ai.ui: RUN START id=20250831_192150
+2025-08-31 19:21:53,681 [INFO] contracts-ai.ui: RUN START id=20250831_192153
+2025-08-31 19:21:53,681 [INFO] contracts-ai.ui: RUN START id=20250831_192153
+2025-08-31 19:21:53,697 [WARNING] contracts-ai.lexicon: YAML parse failed; applying sanitizer: while scanning a double-quoted scalar
+  in "<unicode string>", line 69, column 9:
+          - "Response\s*Time"
+            ^
+found unknown escape character 's'
+  in "<unicode string>", line 69, column 19:
+          - "Response\s*Time"
+                      ^

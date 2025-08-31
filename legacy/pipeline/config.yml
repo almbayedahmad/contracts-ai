@@ -1,0 +1,14 @@
+
+input_path: "data/input/sample.txt"
+output_excel: "data/output/result.xlsx"
+use_extractors:
+  - dates
+  - money
+  - parties
+  - subject
+  - pricing
+  - contacts
+  - ids
+  - legal
+  - sla
+  - terms

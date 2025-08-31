@@ -1,0 +1,87 @@
+
+import re
+from core.schemas import ExtractItem, ExtractBatch
+from core.registry import register_extractor
+from extractors.base import BaseExtractor
+from core.utils import normalize_digits, MONTHS_AR, MONTHS_DE
+
+@register_extractor(name="dates", version="1.2.0")
+class DateExtractor(BaseExtractor):
+    # Patterns: YYYY-MM-DD | DD/MM/YYYY | DD.MM.YYYY | DD <Month AR/DE> YYYY
+    rx = re.compile(
+        r'\b(?:\d{4}-\d{2}-\d{2}|\d{1,2}[./]\d{1,2}[./]\d{2,4}|'
+        r'\d{1,2}\s*(?:يناير|فبراير|مارس|أبريل|ابريل|مايو|يونيو|يوليو|أغسطس|اغسطس|سبتمبر|أكتوبر|اكتوبر|نوفمبر|ديسمبر|'
+        r'Januar|Jan\.?|Februar|Feb\.?|März|Maerz|Mrz\.?|April|Apr\.?|Mai|Juni|Jun\.?|Juli|Jul\.?|August|Aug\.?|September|Sept\.?|Sep\.?|Oktober|Okt\.?|November|Nov\.?|Dezember|Dez\.?)\s*\d{2,4})\b',
+        re.IGNORECASE
+    )
+    window = 60  # chars around match to detect keywords
+
+    def _classify(self, text, start, end):
+        left = text[max(0, start - self.window):start]
+        right = text[end:end + self.window]
+        ctx = (left + " " + right).lower()
+
+        # Arabic & English & German keywords
+        start_kw = [
+            "يبدأ","بدء","سريان","effective","commence","start",
+            "beginnt","beginn","wirksam","gültig ab","gueltig ab","in kraft","inkrafttreten","inkraft"
+        ]
+        end_kw = [
+            "ينتهي","انتهاء","تنتهي","expires","expiry","end",
+            "endet","laufzeitende","beendet","ablauf","auslauf","endet am"
+        ]
+        deadline_kw = [
+            "الموعد النهائي","موعد نهائي","قبل","deadline","last date",
+            "frist","spätestens","spaetestens","stichtag","abgabetermin","liefertermin"
+        ]
+
+        def has_any(words):
+            return any(w in ctx for w in words)
+
+        if has_any(start_kw):
+            return "start_date"
+        if has_any(end_kw):
+            return "end_date"
+        if has_any(deadline_kw):
+            return "deadline"
+        return None
+
+    def _normalize_month_name(self, raw):
+        # Arabic
+        for k,v in MONTHS_AR.items():
+            if k in raw:
+                import re as _re
+                parts = _re.findall(r'(\d{1,2})\s*([\u0600-\u06FF]+)\s*(\d{2,4})', raw)
+                if parts:
+                    dd, mon, yy = parts[0]
+                    if len(yy)==2: yy = '20'+yy
+                    return f"{yy}-{v}-{int(dd):02d}"
+        # German (case-insensitive)
+        raw_low = raw.lower()
+        for k,v in MONTHS_DE.items():
+            if k in raw_low:
+                import re as _re
+                parts = _re.findall(r'(\d{1,2})\s*[A-Za-zÄÖÜäöüß\.]+?\s*(\d{2,4})', raw)
+                if parts:
+                    dd, yy = parts[0]
+                    if len(yy)==2: yy = '20'+yy
+                    return f"{yy}-{v}-{int(dd):02d}"
+        return raw
+
+    def extract(self, doc_id, text):
+        text = normalize_digits(text)
+        items = []
+        for m in self.rx.finditer(text):
+            raw = m.group(0)
+            val = self._normalize_month_name(raw)
+            subtype = self._classify(text, m.start(), m.end())
+            items.append(ExtractItem(
+                item_type="date",
+                subtype=subtype,
+                text_raw=raw,
+                value_norm=val,
+                start=m.start(), end=m.end(),
+                extractor=self.__class__.__name__,
+                version=self.__version__
+            ))
+        return ExtractBatch(doc_id=doc_id, items=items)

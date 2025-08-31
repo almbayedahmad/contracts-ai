@@ -1,0 +1,297 @@
+rules:
+- id: R-DATE-001
+  description: Es muss mindestens ein Datum im Dokument vorhanden sein.
+  type: presence
+  target: date
+  severity: medium
+- id: R-MONEY-001
+  description: Es muss mindestens ein Geldbetrag erkannt werden.
+  type: presence
+  target: money
+  severity: low
+- id: R-TERM-024
+  description: Mindestlaufzeit sollte mindestens 24 Monate betragen.
+  type: min_value
+  where:
+    subtype: min_term_months
+  field: value_norm
+  threshold: 24
+  severity: medium
+- id: R-TERM-024-B
+  description: 'Falls keine Mindestlaufzeit: Vertragslaufzeit mindestens 24 Monate.'
+  type: min_value
+  where:
+    subtype: term_months
+  field: value_norm
+  threshold: 24
+  severity: low
+- id: R-NOTICE-30D
+  description: Kündigungsfrist mindestens 30 Tage.
+  type: min_value
+  where:
+    subtype: notice_days
+  field: value_norm
+  threshold: 30
+  severity: low
+- id: R-NOTICE-2M
+  description: 'Alternativ: Kündigungsfrist mindestens 2 Monate.'
+  type: min_value
+  where:
+    subtype: notice_months
+  field: value_norm
+  threshold: 2
+  severity: low
+- id: R-SLA-RT-48
+  description: Reaktionszeit höchstens 48 Stunden.
+  type: reaction_time_max_hours
+  threshold: 48
+  severity: medium
+- id: R-DATE-ORDER
+  description: Startdatum muss vor oder gleich Enddatum liegen.
+  type: start_before_end
+  severity: high
+- id: R-LEGAL-JUR
+  description: Bei Rechtswahl muss ein Gerichtsstand angegeben sein.
+  type: govlaw_requires_jurisdiction
+  severity: medium
+- id: R-VAT-EUR
+  description: Wenn Preise in EUR genannt sind, sollte MwSt/USt vorhanden sein.
+  type: vat_present_if_eur
+  severity: low
+- id: R-PRICE-SCH
+  description: Bei Monats-/Jahreskosten sollte ein Preisplan (PriceSchedule) existieren.
+  type: price_schedule_exists_if_costs
+  severity: low
+- id: R-Y1-FREE
+  description: Jahr 1 = 0 EUR deutet auf 12 Freimonate hin.
+  type: year1_free_impl_freimonate
+  severity: info
+- id: R-ENT-ROLES
+  description: Es sollten sowohl Kunde/Auftraggeber als auch Lieferant/Auftragnehmer
+    erfasst sein.
+  type: entities_roles_both_present
+  severity: medium
+- id: R-LEX-GWL
+  description: Wenn Zahlungsbeginn an GWL gekoppelt ist, sollten GWL-Begriffe erfasst
+    sein.
+  type: presence
+  target: concept
+  subtype: gwl
+  severity: info
+- id: R-LEX-ONCALL-RT
+  description: Bei Rufbereitschaft sollte die Reaktionszeit ≤ 4h sein.
+  type: reaction_time_max_hours
+  threshold: 4
+  severity: low
+- id: R-LEX-LOANER
+  description: Wenn Austausch-/Leihgerät erwähnt wird, sollte ein Leihgerät-Treffer
+    vorliegen.
+  type: presence
+  target: concept
+  subtype: austauschgeraet
+  severity: info
+- id: R-UPTIME-095
+  description: Wenn Verfügbarkeit angegeben ist, sollte sie mindestens 95% betragen.
+  type: min_value
+  where:
+    subtype: uptime_percent
+  field: value_norm
+  threshold: 95
+  severity: low
+- id: R-MAINT-PERIOD-W
+  description: Wenn Wartung genannt ist, sollte eine Periodizität erfasst sein.
+  type: presence
+  target: other
+  subtype: wartung_period
+  severity: info
+- id: R-MAINT-PERIOD-I
+  description: Wenn Inspektion genannt ist, sollte eine Periodizität erfasst sein.
+  type: presence
+  target: other
+  subtype: inspektion_period
+  severity: info
+- id: R-MAINT-PERIOD-K
+  description: Wenn Kalibrierung genannt ist, sollte eine Periodizität erfasst sein.
+  type: presence
+  target: other
+  subtype: kalibrierung_period
+  severity: info
+- id: R-PARTS-SPEC
+  description: Bei Erwähnung von Ersatz-/Verschleißteilen sollte 'inklusive' oder
+    'exklusive' spezifiziert sein.
+  type: presence
+  target: other
+  subtype: parts_included
+  severity: info
+- id: R-PAY-REQ
+  description: Zahlungsweise sollte vorhanden sein (Intervall oder Methode).
+  type: presence_any
+  options:
+  - type: other
+    subtype: payment_interval
+  - type: other
+    subtype: payment_method
+  severity: low
+- id: R-SCOPE-YEARLY
+  description: Bei SLA-Themen (Wartung/Inspektion/Kalibrierung) sollte ein jährlicher
+    Leistungsumfang oder eine Periodizität erfasst sein.
+  type: presence_implies
+  if:
+  - type: concept
+    subtype: wartung
+  - type: concept
+    subtype: inspektion
+  - type: concept
+    subtype: kalibrierung
+  then:
+  - type: other
+    subtype: service_scope_yearly
+  - type: other
+    subtype: wartung_period
+  - type: other
+    subtype: inspektion_period
+  - type: other
+    subtype: kalibrierung_period
+  severity: info
+- id: R-OBLIGATIONS
+  description: Pflichten des Kunden sollten vorhanden sein.
+  type: presence
+  target: clause
+  subtype: customer_obligations
+  severity: low
+- id: R-LIABILITY
+  description: Haftungsregelung sollte vorhanden sein.
+  type: presence
+  target: clause
+  subtype: liability
+  severity: low
+- id: R-CONTACT
+  description: Mindestens eine Kontaktangabe (E-Mail oder Telefon) sollte vorhanden
+    sein.
+  type: presence_any
+  options:
+  - type: contact
+    subtype: email
+  - type: contact
+    subtype: phone
+  severity: info
+- id: R-COSTS-12X
+  description: Kosten p.a. sollten ungefähr 12 × Kosten p.M. entsprechen (±5%).
+  type: monthly_yearly_consistency
+  tolerance_pct: 5.0
+  severity: info
+- id: R-PAY-ADV-ANNUAL
+  description: Bei jährlicher Zahlweise und Jahreskosten wird 'im Voraus' erwartet.
+  type: payment_annual_requires_advance
+  severity: info
+- id: R-CISG-DE
+  description: Bei Rechtswahl DE sollte das UN-Kaufrecht (CISG) ausgeschlossen sein.
+  type: cisg_excluded_if_de_govlaw
+  severity: medium
+- id: R-PAYMENT-TERM-14
+  description: Zahlungsziel mindestens 14 Tage.
+  type: min_value
+  where:
+    subtype: payment_due_days
+  field: value_norm
+  threshold: 14
+  severity: low
+- id: R-LIAB-CAP
+  description: Haftungsobergrenze (Betrag oder %) sollte vorhanden sein.
+  type: presence_any
+  options:
+  - type: clause
+    subtype: liability_cap_amount
+  - type: clause
+    subtype: liability_cap_percent
+  severity: info
+- id: R-DSGVO-AVV-TOMS
+  description: 'Datenschutz: DSGVO/AVV/TOMs sollten adressiert sein.'
+  type: presence_any
+  options:
+  - type: clause
+    subtype: dsgvo
+  - type: clause
+    subtype: avv
+  - type: clause
+    subtype: toms
+  severity: info
+- id: R-NONCOMPETE-NONSOLICIT
+  description: Wettbewerbs- bzw. Abwerbeverbot sollte geregelt sein.
+  type: presence_any
+  options:
+  - type: clause
+    subtype: non_compete
+  - type: clause
+    subtype: non_solicit
+  severity: info
+- id: R-INDEX-CAP
+  description: Bei Indexierung sollte eine Deckelung (Cap) angegeben sein.
+  type: presence_implies
+  if:
+  - type: pricing
+    subtype: indexation_present
+  - type: pricing
+    subtype: index_raise_percent_pa
+  then:
+  - type: pricing
+    subtype: index_cap_percent
+  severity: info
+- id: R-SC-PRESENT
+  description: Bei Uptime-SLAs sollten Service Credits geregelt sein.
+  type: presence_implies
+  if:
+  - type: other
+    subtype: uptime_percent
+  then:
+  - type: pricing
+    subtype: service_credit_present
+  severity: info
+- id: R-PRICE-COVERAGE
+  description: Preisplan deckt die gesamte Vertragslaufzeit ohne Lücken ab.
+  type: price_covers_term
+  tolerance: 0
+  severity: medium
+- id: R-NET-VAT-BRUTTO
+  description: Zwischensumme (Netto) + MwSt = Brutto (±1 EUR).
+  type: net_vat_brutto_consistency
+  tolerance_eur: 1.0
+  severity: info
+- id: R-ONCALL-SURCHARGE-SPEC
+  description: Bei Rufbereitschaft sollten Zuschläge (%, €/h) spezifiziert sein.
+  type: presence_implies_any
+  if:
+  - type: concept
+    subtype: rufbereitschaft
+  - type: sla
+    subtype: oncall_trigger
+  any:
+  - type: sla
+    subtype: oncall_surcharge_percent
+  - type: sla
+    subtype: oncall_surcharge_eur_per_hour
+  severity: info
+- id: R-TRAVEL-SPEC
+  description: Bei Anfahrt/Fahrtkosten sollten Kosten (€/km oder Pauschale) angegeben
+    sein.
+  type: presence_implies_any
+  if:
+  - type: travel
+    subtype: travel_trigger
+  any:
+  - type: travel
+    subtype: travel_per_km_eur
+  - type: travel
+    subtype: travel_flat_eur
+  severity: info
+- id: R-PARTS-CAP
+  description: Bei Ersatz-/Verschleißteilen sollte eine jährliche Deckelung vorhanden
+    sein.
+  type: presence_implies
+  if:
+  - type: other
+    subtype: parts_included
+  then:
+  - type: parts
+    subtype: parts_cap_per_year_eur
+  severity: info

@@ -1,0 +1,8 @@
+2025-08-31 19:07:18,634 [INFO] contracts-ai.ui: RUN START id=20250831_190718
+2025-08-31 19:07:22,509 [INFO] contracts-ai.ui: RUN START id=20250831_190722
+2025-08-31 19:07:22,510 [ERROR] contracts-ai.ui: Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\almba\OneDrive\Desktop\Contracts_v_full\app\ui_streamlit.py", line 297, in _safe_run_pipeline
+    result = run_local_pipeline(file)
+             ^^^^^^^^^^^^^^^^^^
+NameError: name 'run_local_pipeline' is not defined

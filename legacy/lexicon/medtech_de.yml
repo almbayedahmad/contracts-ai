@@ -1,0 +1,86 @@
+
+concepts:
+  - id: gwl
+    label: Gewährleistung (GWL)
+    category: warranty
+    description: Hersteller-Gewährleistung/Garantie
+    patterns:
+      - "\bGWL\b"
+      - "Gewährleistung"
+      - "Gewährleistungsfrist"
+      - "Garantie"
+  - id: rufbereitschaft
+    label: Rufbereitschaft
+    category: sla
+    description: On-call availability
+    patterns:
+      - "Rufbereitschaft"
+      - "Rufdienst"
+      - "Bereitschaftsdienst"
+  - id: austauschgeraet
+    label: Austauschgerät / Ersatzgerät / Leihgerät
+    category: service
+    description: Replacement or loaner device
+    patterns:
+      - "Austauschgerät"
+      - "Ersatzgerät"
+      - "Leihgerät"
+  - id: wartung
+    label: Wartung / Instandhaltung
+    category: maintenance
+    description: Maintenance activities
+    patterns:
+      - "Wartung"
+      - "Instandhaltung"
+  - id: inspektion
+    label: Inspektion
+    category: maintenance
+    description: Inspection
+    patterns:
+      - "Inspektion"
+  - id: kalibrierung
+    label: Kalibrierung
+    category: maintenance
+    description: Calibration
+    patterns:
+      - "Kalibrierung"
+      - "Kalibrieren"
+  - id: ersatzteil
+    label: Ersatzteile / Verschleißteile
+    category: parts
+    description: Spare/consumable parts
+    patterns:
+      - "Ersatzteile?"
+      - "Verschleißteile?"
+  - id: uptime
+    label: Verfügbarkeit / Uptime / Betriebsbereitschaft
+    category: sla
+    description: Availability targets
+    patterns:
+      - "Verfügbarkeit"
+      - "Uptime"
+      - "Betriebsbereitschaft"
+  - id: reaktionszeit
+    label: Reaktionszeit
+    category: sla
+    description: Response time
+    patterns:
+      - "Reaktionszeit"
+      - "Response\s*Time"
+  - id: servicefenster
+    label: Servicefenster / Arbeitszeiten / werktags
+    category: sla
+    description: Service window / business hours
+    patterns:
+      - "Arbeitszeiten"
+      - "Servicefenster"
+      - "Mo\.?-?Fr\.?"
+      - "werktags"
+  - id: softwarepflege
+    label: Softwarepflege / Updates / Upgrades
+    category: software
+    description: Software maintenance and updates
+    patterns:
+      - "Softwarepflege"
+      - "Updates?"
+      - "Upgrades?"
